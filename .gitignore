@@ -27,10 +27,10 @@ yarn-error.log
 !.vscode/launch.json
 !.vscode/extensions.json
 .history/*
-/product-manager/.vscode
+/angular/.vscode
 
 # Miscellaneous
-/.angular/cache
+/angular/.angular/cache
 .sass-cache/
 /connect.lock
 /coverage
