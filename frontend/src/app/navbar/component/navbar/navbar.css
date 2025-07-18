@@ -1,0 +1,4 @@
+.p-menu-overlay { /* O la clase específica que encuentres al inspeccionar */
+    left: auto !important; /* Desactiva el left calculado por defecto */
+    right: 0 !important;   /* Alinea al borde derecho de la ventana */
+}

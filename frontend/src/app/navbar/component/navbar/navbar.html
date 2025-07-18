@@ -1,0 +1,24 @@
+<nav class="w-full bg-gray-50">
+  <div class="w-full p-4 flex flex-row justify-between items-center">
+    <a routerLink="/" class="text-2xl font-bold text-green-600 hover:text-green-800">
+      <i class="pi pi-home" style="font-size: 1.5rem"></i>
+      Tableros y Tablones
+    </a>
+    <div class="hidden md:flex items-center p-6">
+      <a routerLink="/login" class="text-xl font-bold text-green-600 hover:text-green-800">Login</a>
+      <a routerLink="/register" class="text-xl font-bold text-green-600 hover:text-green-800 ml-4">Register</a>
+      <a routerLink="/logout" class="text-xl font-bold text-green-600 hover:text-green-800 ml-4">Logout</a>
+    </div>
+
+    <div class="md:hidden flex items-center">
+      <button id="mobile-menu-button" class="md:hidden text-green-600 hover:text-green-600 focus:outline-none" (click)="toggleMobileMenu()">
+          <i class="pi pi-bars" style="font-size: 1.5rem"></i>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg py-2">
+    <a routerLink="/login" class="text-xl font-bold text-green-600 hover:text-green-800 block px-4 py-2">Login</a>
+    <a routerLink="/register" class="text-xl font-bold text-green-600 hover:text-green-800 block px-4 py-2">Register</a>
+    <a routerLink="/logout" class="text-xl font-bold text-green-600 hover:text-green-800 block px-4 py-2">Logout</a>
+  </div>
+</nav>
