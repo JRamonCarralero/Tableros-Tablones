@@ -5,4 +5,8 @@ export interface ProductModel {
   price: number;
   stock: number;
   featured: boolean;
+  type: string;
+  height: number;
+  width: number;
+  thickness: number;
 }
