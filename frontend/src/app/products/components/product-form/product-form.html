@@ -1,1 +1,57 @@
-<p>product-form works!</p>
+<form class="container grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <label for="name">
+    Nombre:
+    <input type="text" pInputText id="name" formControlName="name" placeholder="Ej: Tablero de madera" required>
+  </label>
+
+  <label for="description">
+    Descripción:
+    <input type="text" pInputText id="description" formControlName="description" placeholder="Ej: Tablero de madera de 2x1" required>">
+  </label>
+
+  <label for="price">
+    Precio:
+    <p-inputnumber id="price" formControlName="price" currency="EUR" mode="currency" required />
+  </label>
+
+  <label for="stock">
+    Stock:
+    <p-inputnumber id="stock" formControlName="stock" required />
+  </label>
+
+  <label for="featured">
+    Destacado:
+    <p-checkbox id="featured" formControlName="featured" binary="true" />
+  </label>
+
+  <label for="type">
+    Tipo:
+    <input type="text" pInputText id="type" formControlName="type" placeholder="Ej: Madera" required>
+  </label>
+
+  <label for="height">
+    Altura:
+    <p-inputnumber id="height" formControlName="height" required />
+  </label>
+
+  <label for="width">
+    Ancho:
+    <p-inputnumber id="width" formControlName="width" required />
+  </label>
+
+  <label for="thickness">
+    Grosor:
+    <p-inputnumber id="thickness" formControlName="thickness" required />
+  </label>
+
+  <div class="flex justify-end gap-4">
+    <button pButton type="submit"
+      class="p-button-success"
+      [label]="productForm.get('id')!.value ? 'Actualizar' : 'Crear'"
+      [icon]="productForm.get('id')!.value ? 'pi pi-pencil' : 'pi pi-plus'"
+      [raised]="true"
+      [disabled]="productForm.invalid"
+    ></button>
+    <button pButton type="button" label="Cancelar" class="p-button-danger" [raised]="true" (click)="onCancel()"></button>
+  </div>
+</form>
