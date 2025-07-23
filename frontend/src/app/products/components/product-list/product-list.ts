@@ -3,12 +3,15 @@ import { ProductForm } from "../product-form/product-form";
 import { CommonModule } from '@angular/common';
 import { ProductModel } from '../../models/product-model';
 import { ProductService } from '../../services/product-service';
-import { TableModule } from 'primeng/table';
+import { TableModule, Table } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-product-list',
-  imports: [ProductForm, CommonModule, TableModule, ButtonModule],
+  imports: [ProductForm, CommonModule, TableModule, ButtonModule, IconFieldModule, InputIconModule, InputTextModule],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css'
 })
@@ -16,6 +19,8 @@ export class ProductList implements OnInit {
 
   products = signal<ProductModel[]>([]);
   editing = signal<ProductModel | undefined>(undefined);
+
+  searchValue: string | undefined;
 
   constructor(private productService: ProductService) { }
 
@@ -64,5 +69,15 @@ export class ProductList implements OnInit {
         error: (err) => console.error(err)
       });
     }
+  }
+
+  clear(table: Table) {
+      table.clear();
+      this.searchValue = ''
+  }
+
+  getInputValue(event: Event): string {
+    const inputElement = event.target as HTMLInputElement;
+    return inputElement?.value ?? '';
   }
 }
