@@ -19,6 +19,7 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
+frontend/.angular
 
 # Visual Studio Code
 .vscode/*
@@ -27,10 +28,10 @@ yarn-error.log
 !.vscode/launch.json
 !.vscode/extensions.json
 .history/*
-/angular/.vscode
+frontend/.vscode
 
 # Miscellaneous
-/angular/.angular/cache
+frontend/.angular/cache
 .sass-cache/
 /connect.lock
 /coverage
@@ -41,3 +42,6 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+backend/.env
+.env
