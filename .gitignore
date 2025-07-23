@@ -29,6 +29,7 @@ frontend/.angular
 !.vscode/extensions.json
 .history/*
 frontend/.vscode
+/frontend/.vscode
 
 # Miscellaneous
 frontend/.angular/cache
