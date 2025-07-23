@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { ProductModel } from '../../models/product-model';
 import { ProductService } from '../../services/product-service';
 import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-product-list',
-  imports: [ProductForm, CommonModule, TableModule],
+  imports: [ProductForm, CommonModule, TableModule, ButtonModule],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css'
 })

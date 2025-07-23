@@ -12,15 +12,15 @@ class productsModel {
     }
 
     async getOne(id) {
-        return await Product.findById({_id: mongoose.Types.ObjectId(id)});
+        return await Product.findById({_id: new mongoose.Types.ObjectId(id)});
     }
 
     async update(id, product) {
-        return await Product.updateOne({_id: mongoose.Types.ObjectId(id)}, product, {new: true});
+        return await Product.findOneAndUpdate({_id: new mongoose.Types.ObjectId(id)}, product, {new: true});
     }
 
     async delete(id) {
-        return await Product.deleteOne({_id: mongoose.Types.ObjectId(id)});
+        return await Product.findOneAndDelete({_id: new mongoose.Types.ObjectId(id)});
     }
 }
 

@@ -7,7 +7,7 @@ class dbClient {
     }
 
     async openConnectionDB() {
-        const queryString = process.env.MONGODB_URI;
+        const queryString = process.env.MONGO_URL;
         await mongoose.connect(queryString);
     }
 

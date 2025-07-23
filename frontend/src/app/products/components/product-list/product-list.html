@@ -19,11 +19,12 @@
               </div>
             </th>
             <th >Tipo</th>
-            <th >Altura (mm)</th>
-            <th >Ancho (mm)</th>
+            <th >Altura (cm)</th>
+            <th >Ancho (cm)</th>
             <th >Grosor (mm)</th>
             <th >Precio €</th>
             <th >Stock</th>
+            <th class="w-12"></th>
         </tr>
     </ng-template>
     <ng-template #body let-product>
@@ -33,8 +34,14 @@
             <td>{{ product.height }}</td>
             <td>{{ product.width }}</td>
             <td>{{ product.thickness }}</td>
-            <td>{{ product.price }}</td>
+            <td>{{ product.price }} €</td>
             <td>{{ product.stock }}</td>
+            <td class="w-12">
+              <div class="flex flex-row justify-around items-center">
+                <button pButton type="button" [icon]="'pi pi-pencil'" class="p-button-success p-button-text" (click)="onEdit(product)"></button>
+                <button pButton type="button" [icon]="'pi pi-trash'" class="p-button-danger p-button-text" (click)="onDelete(product._id)"></button>
+              </div>
+            </td>
         </tr>
     </ng-template>
 </p-table>
