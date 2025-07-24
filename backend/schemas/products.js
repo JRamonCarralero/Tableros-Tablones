@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const productSchema = new mongoose.Schema(
     {
@@ -39,7 +39,11 @@ const productSchema = new mongoose.Schema(
         thickness: {
             type: Number,
             min: [0, "El grosor no puede ser negativo"]
-        }
+        },
+        provider: {
+            type: Schema.Types.ObjectId,
+            required: true
+        },
     },
     {
         timestamps: true,

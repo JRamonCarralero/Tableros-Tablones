@@ -41,21 +41,38 @@
       Stock:
       <p-inputnumber id="stock" formControlName="stock" class="w-full" required />
     </label>
-  </div>
 
-  <label for="featured">
-    Destacado:
-    <p-checkbox id="featured" formControlName="featured" binary="true" />
-  </label>
+    <label for="provider">
+      Proveedor:
+      <p-select
+        id="provider"
+        [options]="providers"
+        optionLabel="name"
+        optionValue="_id"
+        formControlName="provider"
+        placeholder="Seleccione un proveedor"
+        [filter]="true"
+        filterBy="name"
+        class="w-full"></p-select>
+    </label>
 
-  <div class="flex justify-end gap-4">
-    <button pButton type="submit"
-      class="p-button-success"
-      [label]="productForm.get('_id')!.value ? 'Actualizar' : 'Crear'"
-      [icon]="productForm.get('_id')!.value ? 'pi pi-pencil' : 'pi pi-plus'"
-      [raised]="true"
-      [disabled]="productForm.invalid"
-    ></button>
-    <button pButton type="button" label="Cancelar" class="p-button-danger" [raised]="true" (click)="onCancel()"></button>
+    <div class="flex justify-center items-center gap-4 w-full">
+      <label for="featured">
+        Destacado:
+        <p-checkbox id="featured" formControlName="featured" binary="true" />
+      </label>
+    </div>
+
+    <div class="flex justify-end gap-4 pt-8">
+      <button pButton type="submit"
+        class="p-button-success"
+        [label]="productForm.get('_id')!.value ? 'Actualizar' : 'Crear'"
+        [icon]="productForm.get('_id')!.value ? 'pi pi-pencil' : 'pi pi-plus'"
+        [raised]="true"
+        [disabled]="productForm.invalid"
+      ></button>
+      <button pButton type="button" label="Cancelar" class="p-button-danger" [raised]="true" (click)="onCancel()"></button>
+    </div>
+
   </div>
 </form>

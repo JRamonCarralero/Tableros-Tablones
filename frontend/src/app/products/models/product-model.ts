@@ -9,4 +9,5 @@ export interface ProductModel {
   height: number;
   width: number;
   thickness: number;
+  provider: string;
 }

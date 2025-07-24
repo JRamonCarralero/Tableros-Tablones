@@ -49,7 +49,8 @@ export class ProductList implements OnInit {
       type: '',
       height: 0,
       width: 0,
-      thickness: 0
+      thickness: 0,
+      provider: ''
     });
   }
 
