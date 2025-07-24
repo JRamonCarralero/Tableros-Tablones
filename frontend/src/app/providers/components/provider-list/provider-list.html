@@ -1,0 +1,64 @@
+<h1 class="text-4xl font-bold text-green-600 text-center py-6">Proveedores</h1>
+
+<div *ngIf="editing()" class="container mx-auto p-8">
+  <app-provider-form [selectedProvider]="editing()" (cancel)="onSaved()" (create)="onSaved()" (update)="onSaved()"></app-provider-form>
+</div>
+
+<div class="container mx-auto p-8">
+  <p-table #dt1
+    [value]="providers()"
+    dataKey="_id"
+    [paginator]="true"
+    [rows]="10"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [rowsPerPageOptions]="[10, 20]"
+    [globalFilterFields]="['name', 'email']"
+    [rowHover]="true"
+    [showCurrentPageReport]="true"
+    currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex items-center">
+        <p-button label="Clear" [outlined]="true" icon="pi pi-filter-slash" (click)="clear(dt1)" />
+        <p-iconfield iconPosition="left" class="ml-auto">
+          <p-inputicon>
+            <i class="pi pi-search"></i>
+          </p-inputicon>
+          <input pInputText type="text" (input)="dt1.filterGlobal(getInputValue($event), 'contains')" placeholder="Buscar" class="w-xl" />
+        </p-iconfield>
+        <div class="ml-auto">
+          <p-button *ngIf="!editing()" label="Crear" [outlined]="true" icon="pi pi-plus" (click)="onNewProvider()"></p-button>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="name" style="width:20%">
+          <div class="flex items-center gap-2">
+            Nombre
+            <p-sortIcon field="name" />
+            <p-columnFilter type="text" field="name" display="menu" />
+          </div>
+        </th>
+        <th >Email</th>
+        <th >Teléfono</th>
+        <th >Dirección</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-provider>
+      <tr>
+        <td>{{ provider.name }}</td>
+        <td>{{ provider.email }}</td>
+        <td>{{ provider.phone }}</td>
+        <td>{{ provider.address }}</td>
+        <td class="w-12">
+          <div class="flex flex-row justify-around items-center">
+            <button pButton type="button" [icon]="'pi pi-pencil'" class="p-button-success p-button-text" (click)="onEdit(provider)"></button>
+            <button pButton type="button" [icon]="'pi pi-trash'" class="p-button-danger p-button-text" (click)="onDelete(provider._id)"></button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

@@ -1,0 +1,34 @@
+<form class="w-full flex flex-col gap-4 p-6 border-2 border-green-600 rounded-lg text-green-800 font-semibold" [formGroup]="providerForm" (ngSubmit)="onSubmit()">
+  <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
+    <label for="name">
+      Nombre:
+      <input type="text" pInputText id="name" formControlName="name" placeholder="Proveedor" class="w-full" required />
+    </label>
+
+    <label for="email">
+      Email:
+      <input type="text" pInputText id="email" formControlName="email" placeholder="Email" class="w-full" required />
+    </label>
+
+    <label for="phone">
+      Teléfono:
+      <input type="text" pInputText id="phone" formControlName="phone" placeholder="Teléfono" class="w-full" required />
+    </label>
+
+    <label for="address">
+      Dirección:
+      <input type="text" pInputText id="address" formControlName="address" placeholder="Dirección" class="w-full" required />
+    </label>
+  </div>
+
+  <div class="flex justify-end gap-4">
+    <button pButton type="submit"
+      class="p-button-success"
+      [label]="providerForm.get('_id')!.value ? 'Actualizar' : 'Crear'"
+      [icon]="providerForm.get('_id')!.value ? 'pi pi-pencil' : 'pi pi-plus'"
+      [raised]="true"
+      [disabled]="providerForm.invalid"
+    ></button>
+    <button pButton type="button" label="Cancelar" class="p-button-danger" [raised]="true" (click)="onCancel()"></button>
+  </div>
+</form>
