@@ -11,10 +11,6 @@ class productsModel {
         return await Product.find();
     }
 
-    async getOne(id) {
-        return await Product.findById({_id: new mongoose.Types.ObjectId(id)});
-    }
-
     async update(id, product) {
         return await Product.findOneAndUpdate({_id: new mongoose.Types.ObjectId(id)}, product, {new: true});
     }

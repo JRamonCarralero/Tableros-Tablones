@@ -40,6 +40,9 @@ const productSchema = new mongoose.Schema(
             type: Number,
             min: [0, "El grosor no puede ser negativo"]
         }
+    },
+    {
+        timestamps: true,
     }
 );
 
