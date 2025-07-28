@@ -1,0 +1,32 @@
+<form class="w-full border-green-600 rounded-lg text-green-800 font-semibold" [formGroup]="orderFilterForm" (ngSubmit)="onSubmit()">
+  <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
+    <label for="provider">
+      Proveedor:
+      <p-select
+        id="provider"
+        [options]="providers"
+        optionLabel="name"
+        optionValue="_id"
+        formControlName="provider"
+        placeholder="Seleccione un proveedor"
+        [filter]="true"
+        filterBy="name"
+        class="w-full"></p-select>
+    </label>
+
+    <label for="name">
+      Nombre:
+      <input type="text" pInputText id="name" formControlName="name" placeholder="Ej: Tablero de madera" class="w-full" required />
+    </label>
+  </div>
+  <div class="container mx-auto flex justify-end gap-4 pt-8">
+      <button pButton type="submit"
+        class="p-button-success"
+        label="Filtrar"
+        icon="'pi pi-filter'"
+        [raised]="true"
+        [disabled]="orderFilterForm.invalid"
+      ></button>
+      <button pButton type="button" label="Cancelar" class="p-button-danger" [raised]="true" (click)="onCancel()"></button>
+    </div>
+</form>
