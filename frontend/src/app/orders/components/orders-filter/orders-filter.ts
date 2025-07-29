@@ -44,5 +44,6 @@ export class OrdersFilter implements OnInit {
 
   onCancel() {
     this.orderFilterForm.reset({ provider: null, name: '' });
+    this.filter.emit(this.orderFilterForm.value);
   }
 }

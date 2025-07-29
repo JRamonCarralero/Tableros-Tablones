@@ -1,3 +1,7 @@
 <div class="container mx-auto p-8">
   <app-orders-filter (filter)="onFilter($event)"></app-orders-filter>
 </div>
+
+<div class="container mx-auto p-8">
+  <app-orders-list [currentFilters]="currentFilter()" (orderProduct)="onOrderProduct($event)" ></app-orders-list>
+</div>

@@ -18,6 +18,10 @@ class productsModel {
     async delete(id) {
         return await Product.findOneAndDelete({_id: new mongoose.Types.ObjectId(id)});
     }
+
+    async getFilteredProducts(filters) {
+        return await Product.find(filters);
+    }
 }
 
 export default new productsModel();

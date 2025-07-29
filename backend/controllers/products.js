@@ -41,6 +41,21 @@ class productController {
             res.status(500).send(error);
         }
     }
+
+    async getFilteredProducts(req, res) {
+        try {
+            const params = req.query;
+            const filters = {};
+            if (params.provider) filters.provider = params.provider;
+            if (params.name) {
+                filters.name = { $regex: params.name, $options: 'i' };
+            }
+            const data = await productModel.getFilteredProducts(filters);
+            res.status(200).json(data);
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    }
 }
 
 export default new productController();
