@@ -2,6 +2,10 @@
   <app-orders-filter (filter)="onFilter($event)"></app-orders-filter>
 </div>
 
-<div class="container mx-auto p-8">
+<div *ngIf="!selectedProduct()" class="container mx-auto p-8">
   <app-orders-list [currentFilters]="currentFilter()" (orderProduct)="onOrderProduct($event)" ></app-orders-list>
+</div>
+
+<div *ngIf="selectedProduct()" class="container mx-auto p-8">
+  <app-orders-product [product]="selectedProduct()" (cancel)="onCancelProduct()"></app-orders-product>
 </div>
