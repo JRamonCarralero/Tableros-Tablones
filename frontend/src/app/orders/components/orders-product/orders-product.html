@@ -1,2 +1,22 @@
-<p>orders-product works!</p>
-<p-button label="Volver" (click)="onCancel()"></p-button>
+<div *ngIf="product" class="flex flex-col gap-4 items-center">
+  <div class="flex flex-col items-center">
+    <h2 class="text-3xl font-bold text-green-800">{{ product.name }}</h2>
+    <p class="text-green-600 font-medium">{{ product.type }}</p>
+  </div>
+  <div class="flex flex-col items-center gap-2">
+    <p class="">{{ product.description }}</p>
+    <div class="flex flex-row justify-around w-2xl">
+      <span><b>Altura: </b> {{ product.height }} cm</span>
+      <span><b>Ancho: </b> {{ product.width }} cm</span>
+      <span><b>Grosor: </b> {{ product.thickness }} mm</span>
+    </div>
+  </div>
+  <label for="quantity">Cantidad:
+    <p-inputnumber id="quantity" [(ngModel)]="quantity" [min]="0" />
+  </label>
+  <div class="flex flex-row gap-4 justify-center">
+    <button pButton label="Añadir" class="p-button-success" (click)="onAddToOrder()"></button>
+    <button pButton label="Volver" class="p-button-danger" (click)="onCancel()"></button>
+  </div>
+</div>
+

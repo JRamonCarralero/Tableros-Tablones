@@ -6,6 +6,11 @@ import { ProductModel } from '../../../products/models/product-model';
 import { OrdersProduct } from "../orders-product/orders-product";
 import { CommonModule } from '@angular/common';
 
+interface ProductWithQuantity {
+  product: ProductModel;
+  quantity: number;
+}
+
 @Component({
   selector: 'app-orders-view',
   imports: [OrdersFilter, OrdersList, OrdersProduct, CommonModule],
@@ -30,5 +35,9 @@ export class OrdersView {
 
   onCancelProduct() {
     this.selectedProduct.set(null);
+  }
+
+  onSaveProduct(data: ProductWithQuantity) {
+    console.log(data.product, data.quantity);
   }
 }

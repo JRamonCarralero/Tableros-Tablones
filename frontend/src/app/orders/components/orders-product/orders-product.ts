@@ -1,17 +1,20 @@
 import { Component, EventEmitter, Input, OnChanges, Output, signal, SimpleChanges } from '@angular/core';
 import { ProductModel } from '../../../products/models/product-model';
 import { ButtonModule } from 'primeng/button';
+import { CommonModule } from '@angular/common';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-orders-product',
-  imports: [ButtonModule],
+  imports: [CommonModule, ButtonModule, InputNumberModule, FormsModule],
   templateUrl: './orders-product.html',
   styleUrl: './orders-product.css'
 })
 export class OrdersProduct implements OnChanges {
   @Input() product?: ProductModel | null;
 
-  @Output() save = new EventEmitter<void>();
+  @Output() save = new EventEmitter<any>();
   @Output() cancel = new EventEmitter<void>();
 
   currentProduct = signal<ProductModel>({
@@ -28,6 +31,8 @@ export class OrdersProduct implements OnChanges {
     provider: ''
   });
 
+  quantity: number = 0;
+
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -37,7 +42,11 @@ export class OrdersProduct implements OnChanges {
     }
   }
 
-  onSave() {}
+  onAddToOrder() {
+    this.save.emit({ product: this.currentProduct(), quantity: this.quantity });
+    this.resetCurrentProduct();
+    this.cancel.emit();
+  }
 
   onCancel() {
     this.resetCurrentProduct();

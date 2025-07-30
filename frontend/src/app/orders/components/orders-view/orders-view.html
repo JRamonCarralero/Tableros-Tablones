@@ -1,11 +1,13 @@
-<div class="container mx-auto p-8">
+<h1 class="text-4xl font-bold text-green-600 text-center py-6">Pedidos a proveedor</h1>
+
+<div class="container mx-auto p-8 border-b-2 border-green-600">
   <app-orders-filter (filter)="onFilter($event)"></app-orders-filter>
 </div>
 
-<div *ngIf="!selectedProduct()" class="container mx-auto p-8">
+<div *ngIf="!selectedProduct()" class="container mx-auto p-8 border-b-2 border-green-600">
   <app-orders-list [currentFilters]="currentFilter()" (orderProduct)="onOrderProduct($event)" ></app-orders-list>
 </div>
 
-<div *ngIf="selectedProduct()" class="container mx-auto p-8">
-  <app-orders-product [product]="selectedProduct()" (cancel)="onCancelProduct()"></app-orders-product>
+<div *ngIf="selectedProduct()" class="container mx-auto p-8 border-b-2 border-green-600">
+  <app-orders-product [product]="selectedProduct()" (cancel)="onCancelProduct()" (save)="onSaveProduct($event)" ></app-orders-product>
 </div>
