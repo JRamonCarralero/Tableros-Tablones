@@ -1,1 +1,42 @@
-<p>orders-kart works!</p>
+<h2 class="text-2xl font-bold text-green-600 text-center py-6">Productos solicitados</h2>
+
+<p-table #ok1
+  [value]="products"
+  dataKey="_id"
+  [paginator]="true"
+  [rows]="10"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [rowsPerPageOptions]="[10, 20]"
+  [rowHover]="true"
+  [showCurrentPageReport]="true"
+  currentPageReportTemplate="Mostrando {first} a {last} de {totalRecords} resultados"
+>
+  <ng-template #header>
+    <tr>
+      <th style="width:20%">Nombre</th>
+      <th >Tipo</th>
+      <th >Altura (cm)</th>
+      <th >Ancho (cm)</th>
+      <th >Grosor (mm)</th>
+      <th >Stock</th>
+      <th >Solicitados</th>
+      <th class="w-12"></th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-product>
+    <tr>
+      <td>{{ product.product.name }}</td>
+      <td>{{ product.product.type }}</td>
+      <td>{{ product.product.height }}</td>
+      <td>{{ product.product.width }}</td>
+      <td>{{ product.product.thickness }}</td>
+      <td>{{ product.product.stock }}</td>
+      <td>{{ product.quantity }}</td>
+      <td class="w-12">
+        <div class="flex flex-row justify-around items-center">
+          <button pButton type="button" [icon]="'pi pi-trash'" class="p-button-danger p-button-text" (click)="onDelete(product)"></button>
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

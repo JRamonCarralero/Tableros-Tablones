@@ -11,3 +11,7 @@
 <div *ngIf="selectedProduct()" class="container mx-auto p-8 border-b-2 border-green-600">
   <app-orders-product [product]="selectedProduct()" (cancel)="onCancelProduct()" (save)="onSaveProduct($event)" ></app-orders-product>
 </div>
+
+<div class="container mx-auto p-8">
+  <app-orders-kart [products]="currentOrdersList()" (delete)="onDeleteOrder($event)"></app-orders-kart>
+</div>
