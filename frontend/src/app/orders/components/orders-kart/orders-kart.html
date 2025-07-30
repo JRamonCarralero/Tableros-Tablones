@@ -14,12 +14,14 @@
   <ng-template #header>
     <tr>
       <th style="width:20%">Nombre</th>
-      <th >Tipo</th>
-      <th >Altura (cm)</th>
-      <th >Ancho (cm)</th>
-      <th >Grosor (mm)</th>
-      <th >Stock</th>
-      <th >Solicitados</th>
+      <th>Tipo</th>
+      <th>Altura (cm)</th>
+      <th>Ancho (cm)</th>
+      <th>Grosor (mm)</th>
+      <th>Stock</th>
+      <th>Solicitados</th>
+      <th>Precio/Unidad</th>
+      <th>Precio</th>
       <th class="w-12"></th>
     </tr>
   </ng-template>
@@ -32,11 +34,21 @@
       <td>{{ product.product.thickness }}</td>
       <td>{{ product.product.stock }}</td>
       <td>{{ product.quantity }}</td>
+      <td>{{ product.price }} €</td>
+      <td>{{ product.price * product.quantity }} €</td>
       <td class="w-12">
         <div class="flex flex-row justify-around items-center">
           <button pButton type="button" [icon]="'pi pi-trash'" class="p-button-danger p-button-text" (click)="onDelete(product)"></button>
         </div>
       </td>
+    </tr>
+  </ng-template>
+  <ng-template #footer>
+    <tr class="font-bold">
+      <td colspan="7"></td>
+      <td>Total:</td>
+      <td>{{ totalPrice }} €</td>
+      <td></td>
     </tr>
   </ng-template>
 </p-table>

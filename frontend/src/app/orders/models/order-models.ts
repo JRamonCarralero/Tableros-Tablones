@@ -8,4 +8,5 @@ export interface OrderFilterParams {
 export interface ProductWithQuantity {
   product: ProductModel;
   quantity: number;
+  price: number;
 }

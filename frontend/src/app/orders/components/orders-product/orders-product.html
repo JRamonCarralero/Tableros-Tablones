@@ -14,6 +14,9 @@
   <label for="quantity">Cantidad:
     <p-inputnumber id="quantity" [(ngModel)]="quantity" [min]="0" />
   </label>
+  <label for="quantity">Precio:
+    <p-inputnumber id="quantity" [(ngModel)]="prodPrice" [min]="0" />
+  </label>
   <div class="flex flex-row gap-4 justify-center">
     <button pButton label="Añadir" class="p-button-success" (click)="onAddToOrder()"></button>
     <button pButton label="Volver" class="p-button-danger" (click)="onCancel()"></button>

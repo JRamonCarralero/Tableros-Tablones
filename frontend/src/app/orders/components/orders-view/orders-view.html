@@ -4,7 +4,7 @@
   <app-orders-filter (filter)="onFilter($event)"></app-orders-filter>
 </div>
 
-<div *ngIf="!selectedProduct()" class="container mx-auto p-8 border-b-2 border-green-600">
+<div *ngIf="!selectedProduct() && currentFilter()" class="container mx-auto p-8 border-b-2 border-green-600">
   <app-orders-list [currentFilters]="currentFilter()" (orderProduct)="onOrderProduct($event)" ></app-orders-list>
 </div>
 
@@ -12,6 +12,6 @@
   <app-orders-product [product]="selectedProduct()" (cancel)="onCancelProduct()" (save)="onSaveProduct($event)" ></app-orders-product>
 </div>
 
-<div class="container mx-auto p-8">
+<div *ngIf="currentOrdersList().length > 0" class="container mx-auto p-8">
   <app-orders-kart [products]="currentOrdersList()" (delete)="onDeleteOrder($event)"></app-orders-kart>
 </div>

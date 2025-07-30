@@ -32,6 +32,7 @@ export class OrdersProduct implements OnChanges {
   });
 
   quantity: number = 0;
+  prodPrice: number = 0;
 
   constructor() { }
 
@@ -43,7 +44,7 @@ export class OrdersProduct implements OnChanges {
   }
 
   onAddToOrder() {
-    this.save.emit({ product: this.currentProduct(), quantity: this.quantity });
+    this.save.emit({ product: this.currentProduct(), quantity: this.quantity, price: this.prodPrice });
     this.resetCurrentProduct();
     this.cancel.emit();
   }
