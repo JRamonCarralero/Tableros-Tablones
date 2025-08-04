@@ -13,5 +13,5 @@
 </div>
 
 <div *ngIf="currentOrdersList().length > 0" class="container mx-auto p-8">
-  <app-orders-kart [products]="currentOrdersList()" (delete)="onDeleteOrder($event)"></app-orders-kart>
+  <app-orders-kart [products]="currentOrdersList()" (delete)="onDeleteOrder($event)" (confirmOrder)="onConfirmOrder()" (cancelOrder)="onCancelOrder()"></app-orders-kart>
 </div>

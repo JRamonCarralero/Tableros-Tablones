@@ -6,6 +6,7 @@ import cors from 'cors';
 
 import routerProducts from './routes/products.js';
 import routerProviders from './routes/providers.js';
+import routerOrders from './routes/orders.js';
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(cors());
 
 app.use('/products', routerProducts);
 app.use('/providers', routerProviders);
+app.use('/orders', routerOrders);
 
 try {
     const PORT = process.env.PORT || 3000;

@@ -10,3 +10,11 @@ export interface ProductWithQuantity {
   quantity: number;
   price: number;
 }
+
+export interface OrderModel {
+  _id: string;
+  products: ProductWithQuantity[];
+  provider: string;
+  user: string;
+  date: Date;
+}

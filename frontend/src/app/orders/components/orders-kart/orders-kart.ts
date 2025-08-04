@@ -14,6 +14,8 @@ export class OrdersKart implements OnChanges {
   @Input() products: ProductWithQuantity[] = [];
 
   @Output() delete = new EventEmitter<ProductWithQuantity>();
+  @Output() cancelOrder = new EventEmitter<void>();
+  @Output() confirmOrder = new EventEmitter<void>();
 
   totalPrice: number = 0;
 
@@ -25,5 +27,13 @@ export class OrdersKart implements OnChanges {
 
   onDelete(product: ProductWithQuantity) {
     this.delete.emit(product);
+  }
+
+  onCancel() {
+    this.cancelOrder.emit();
+  }
+
+  onConfirm() {
+    this.confirmOrder.emit();
   }
 }

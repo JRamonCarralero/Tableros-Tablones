@@ -6,7 +6,7 @@ import { ProductModel } from '../../../products/models/product-model';
 import { OrdersProduct } from "../orders-product/orders-product";
 import { CommonModule } from '@angular/common';
 import { OrdersKart } from "../orders-kart/orders-kart";
-
+import { OrdersService } from '../../services/orders-service';
 
 @Component({
   selector: 'app-orders-view',
@@ -18,6 +18,8 @@ export class OrdersView {
   currentFilter = signal<OrderFilterParams | null>(null);
   selectedProduct = signal<ProductModel | null>(null);
   currentOrdersList = signal<ProductWithQuantity[]>([]);
+
+  constructor(private orderService: OrdersService) { }
 
   onFilter(filter: OrderFilterParams) {
     if (filter.provider === null) {
@@ -42,5 +44,17 @@ export class OrdersView {
 
   onDeleteOrder(product: ProductWithQuantity) {
     this.currentOrdersList.set(this.currentOrdersList().filter(p => p.product._id !== product.product._id));
+  }
+
+  onCancelOrder() {
+    this.currentOrdersList.set([]);
+  }
+
+  onConfirmOrder() {
+    console.log(this.currentOrdersList());
+    this.orderService.createOrder(this.currentOrdersList()).subscribe(() => {
+      this.currentOrdersList.set([]);
+      alert('Pedido realizado con exito');
+    });
   }
 }
