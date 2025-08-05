@@ -7,10 +7,11 @@ import { OrdersProduct } from "../orders-product/orders-product";
 import { CommonModule } from '@angular/common';
 import { OrdersKart } from "../orders-kart/orders-kart";
 import { OrdersService } from '../../services/orders-service';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-orders-view',
-  imports: [OrdersFilter, OrdersList, OrdersProduct, CommonModule, OrdersKart],
+  imports: [OrdersFilter, OrdersList, OrdersProduct, CommonModule, OrdersKart, ButtonModule],
   templateUrl: './orders-view.html',
   styleUrl: './orders-view.css'
 })
@@ -18,6 +19,8 @@ export class OrdersView {
   currentFilter = signal<OrderFilterParams | null>(null);
   selectedProduct = signal<ProductModel | null>(null);
   currentOrdersList = signal<ProductWithQuantity[]>([]);
+
+  showList: boolean = true
 
   constructor(private orderService: OrdersService) { }
 
@@ -56,5 +59,9 @@ export class OrdersView {
       this.currentOrdersList.set([]);
       alert('Pedido realizado con exito');
     });
+  }
+
+  onShowList() {
+    this.showList = !this.showList;
   }
 }
