@@ -7,9 +7,8 @@ const ordersSchema = new mongoose.Schema(
             required: true
         },
         provider: {
-            //type: Schema.Types.ObjectId,
-            type: String,
-            //required: true
+            type: Schema.Types.ObjectId,
+            required: true
         },
         user: {
             type: String,

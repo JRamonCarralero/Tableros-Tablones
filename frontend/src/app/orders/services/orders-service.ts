@@ -22,10 +22,10 @@ export class OrdersService {
     return this.http.get<ProductModel[]>(`${this.productsAPI}/filters`, { params });
   }
 
-  createOrder(products: ProductWithQuantity[]): Observable<OrderModel> {
+  createOrder(products: ProductWithQuantity[], provider: string): Observable<OrderModel> {
     const newOrder: Omit<OrderModel, '_id'> = {
       products: products,
-      provider: '',
+      provider: provider,
       user: '',
       date: new Date()
     }

@@ -56,7 +56,7 @@ export class OrdersView {
 
   onConfirmOrder() {
     console.log(this.currentOrdersList());
-    this.orderService.createOrder(this.currentOrdersList()).subscribe(() => {
+    this.orderService.createOrder(this.currentOrdersList(), this.currentFilter()?.provider!).subscribe(() => {
       this.currentOrdersList.set([]);
       alert('Pedido realizado con exito');
     });
