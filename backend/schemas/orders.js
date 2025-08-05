@@ -7,16 +7,17 @@ const ordersSchema = new mongoose.Schema(
             required: true
         },
         provider: {
-            type: Schema.Types.ObjectId,
-            required: true
+            //type: Schema.Types.ObjectId,
+            type: String,
+            //required: true
         },
         user: {
             type: String,
-            required: true
+            //required: true
         },
         date: {
             type: Date,
-            required: true
+            //required: true
         }
     },
     {

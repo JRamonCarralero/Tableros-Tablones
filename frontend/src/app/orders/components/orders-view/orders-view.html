@@ -5,7 +5,7 @@
 </div>
 
 <div *ngIf="showList" class="w-full">
-  <p>Listado de orders</p>
+  <app-orders-list></app-orders-list>
 </div>
 
 <div *ngIf="!showList" class="w-full">
@@ -14,7 +14,7 @@
   </div>
 
   <div *ngIf="!selectedProduct() && currentFilter()" class="container mx-auto p-8 border-b-2 border-green-600">
-    <app-orders-list [currentFilters]="currentFilter()" (orderProduct)="onOrderProduct($event)" ></app-orders-list>
+    <app-orders-product-list [currentFilters]="currentFilter()" (orderProduct)="onOrderProduct($event)" ></app-orders-product-list>
   </div>
 
   <div *ngIf="selectedProduct()" class="container mx-auto p-8 border-b-2 border-green-600">

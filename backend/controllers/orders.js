@@ -5,9 +5,11 @@ class ordersController {
 
     async create(req, res) {
         try {
+            console.log(req.body);
             const data = await ordersModel.create(req.body);
             res.status(201).json(data);
         } catch (error) {
+            console.log('error');
             res.status(500).send(error);
         }
     }

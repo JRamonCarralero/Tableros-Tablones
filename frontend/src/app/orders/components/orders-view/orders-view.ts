@@ -1,17 +1,18 @@
 import { Component, signal } from '@angular/core';
 import { OrdersFilter } from "../orders-filter/orders-filter";
-import { OrdersList } from "../orders-list/orders-list";
 import { OrderFilterParams, ProductWithQuantity } from "../../models/order-models";
+import { OrdersProductList } from "../orders-product-list/orders-product-list";
 import { ProductModel } from '../../../products/models/product-model';
 import { OrdersProduct } from "../orders-product/orders-product";
 import { CommonModule } from '@angular/common';
 import { OrdersKart } from "../orders-kart/orders-kart";
 import { OrdersService } from '../../services/orders-service';
 import { ButtonModule } from 'primeng/button';
+import { OrdersList } from "../orders-list/orders-list";
 
 @Component({
   selector: 'app-orders-view',
-  imports: [OrdersFilter, OrdersList, OrdersProduct, CommonModule, OrdersKart, ButtonModule],
+  imports: [OrdersFilter, OrdersProduct, CommonModule, OrdersKart, ButtonModule, OrdersProductList, OrdersList],
   templateUrl: './orders-view.html',
   styleUrl: './orders-view.css'
 })
