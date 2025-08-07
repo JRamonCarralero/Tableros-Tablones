@@ -25,6 +25,13 @@ export class OrdersView {
 
   constructor(private orderService: OrdersService) { }
 
+  /**
+   * Updates the current filter based on the provided filter parameters.
+   * If the provider in the filter is null, the current filter is reset.
+   * Otherwise, the current filter is set to the provided filter.
+   *
+   * @param filter - The filter parameters containing provider and name.
+   */
   onFilter(filter: OrderFilterParams) {
     if (filter.provider === null) {
       this.currentFilter.set(null);
@@ -33,27 +40,61 @@ export class OrdersView {
     this.currentFilter.set(filter);
   }
 
+  /**
+   * Sets the selected product to the specified product.
+   * This method is typically called when a user selects a product
+   * from the product list, updating the selectedProduct signal.
+   *
+   * @param product - The product to be set as selected.
+   */
   onOrderProduct(product: ProductModel) {
     this.selectedProduct.set(product);
   }
 
+  /**
+   * Resets the selected product to null, effectively cancelling
+   * the current product selection.
+   */
   onCancelProduct() {
     this.selectedProduct.set(null);
   }
 
+  /**
+   * Adds a product with its quantity to the current order list.
+   * This method is typically called when a user saves the product after selection,
+   * updating the currentOrdersList signal with the new product data.
+   *
+   * @param data - The product with quantity and price details to be added to the order list.
+   */
   onSaveProduct(data: ProductWithQuantity) {
     this.currentOrdersList.set([...this.currentOrdersList(), data]);
     console.log(this.currentOrdersList());
   }
 
+  /**
+   * Removes a product from the current order list.
+   * This method is typically called when a user wants to remove a product from the order.
+   * It filters out the product from the current order list based on the product id.
+   * @param product - The product to be removed from the order list.
+   */
   onDeleteOrder(product: ProductWithQuantity) {
     this.currentOrdersList.set(this.currentOrdersList().filter(p => p.product._id !== product.product._id));
   }
 
+  /**
+   * Resets the current order list to an empty array, effectively canceling
+   * the entire order.
+   */
   onCancelOrder() {
     this.currentOrdersList.set([]);
   }
 
+  /**
+   * Emits a confirm order event.
+   * This function is typically called when a user wants to confirm the entire order.
+   * It sends a request to the server to create an order with the current products and provider.
+   * If the request is successful, it resets the order list to an empty array and shows a success alert.
+   */
   onConfirmOrder() {
     console.log(this.currentOrdersList());
     this.orderService.createOrder(this.currentOrdersList(), this.currentFilter()?.provider!).subscribe(() => {
@@ -62,6 +103,10 @@ export class OrdersView {
     });
   }
 
+  /**
+   * Toggles the showList flag, which is used to show/hide the product list.
+   * This method is typically called when a user wants to show/hide the product list.
+   */
   onShowList() {
     this.showList = !this.showList;
   }

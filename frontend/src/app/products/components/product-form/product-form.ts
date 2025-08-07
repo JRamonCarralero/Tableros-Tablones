@@ -52,18 +52,38 @@ export class ProductForm implements OnChanges, OnInit {
 
   constructor(private productService: ProductService, private providerService: ProviderService) { }
 
+/**
+ * Called upon component initialization.
+ * Fetches all providers from the provider service and assigns them
+ * to the `providers` array, which is used to populate the provider
+ * select dropdown in the component template.
+ */
   ngOnInit(): void {
     this.providerService.getAllProviders().subscribe(providers => {
       this.providers = providers;
     });
   }
 
+  /**
+   * Called when the component is initialized or when the `selectedProduct` input is changed.
+   * If `selectedProduct` is defined, patches the form with the values of `selectedProduct`.
+   * This method is used to synchronize the form with the selected product when the component is initialized
+   * or when the selected product is changed.
+   *
+   * @param changes The SimpleChanges object describing the change that occurred.
+   */
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['selectedProduct'] && this.selectedProduct) {
       this.productForm.patchValue(this.selectedProduct);
     }
   }
 
+  /**
+   * Submits the form by either creating a new product or updating an existing one.
+   * If the form is invalid, does nothing.
+   * If the form is valid, fetches the values from the form and either creates a new product with the {@link ProductService}
+   * or updates an existing product with the provided values and emits the {@link create} or {@link update} event respectively.
+   */
   onSubmit() {
     if (this.productForm.invalid) return;
 
@@ -86,16 +106,30 @@ export class ProductForm implements OnChanges, OnInit {
     }
   }
 
+  /**
+   * Resets the form to its initial state and emits the {@link create} event.
+   * This method is used to signal that a new product should be created after the form has been submitted.
+   */
   resetAndEmitCreate() {
     this.productForm.reset({ _id: null, name: '', description: '', price: 0, stock: 0, featured: false, type: '', height: 0, width: 0, thickness: 0, provider: '' });
     this.create.emit();
   }
 
+  /**
+   * Resets the form to its initial state and emits the {@link update} event.
+   * This method is used to signal that an existing product should be updated after the form has been submitted.
+   */
   resetAndEmitUpdate() {
     this.productForm.reset({ _id: null, name: '', description: '', price: 0, stock: 0, featured: false, type: '', height: 0, width: 0, thickness: 0, provider: '' });
     this.update.emit();
   }
 
+/**
+ * Resets the product form to its initial state and emits a cancel event.
+ * This method is typically invoked when the user decides to cancel the current
+ * product operation, such as creating or editing a product, and wishes to revert
+ * any changes made to the form fields.
+ */
   onCancel() {
     this.productForm.reset({ _id: null, name: '', description: '', price: 0, stock: 0, featured: false, type: '', height: 0, width: 0, thickness: 0, provider: '' });
     this.cancel.emit();

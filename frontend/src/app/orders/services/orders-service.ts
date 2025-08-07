@@ -13,6 +13,16 @@ export class OrdersService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * Gets filtered products.
+   *
+   * This function receives a filters object, builds query parameters from it,
+   * calls the model to find products that match the given filters in the database,
+   * and returns the matching product data.
+   *
+   * @param {OrderFilterParams} filters - The filters to apply for retrieving products.
+   * @returns {Observable<Array>} - A promise containing an array of filtered product data.
+   */
   getFilteredProducts(filters: OrderFilterParams): Observable<ProductModel[]> {
     let params = new HttpParams();
 

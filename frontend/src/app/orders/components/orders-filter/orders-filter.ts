@@ -32,16 +32,33 @@ export class OrdersFilter implements OnInit {
 
   constructor(private providerService: ProviderService) { }
 
+  /**
+   * Called when the component is initialized.
+   * Loads the providers from the database and stores them in the providers array.
+   * The providers are then used to populate the provider select dropdown in the
+   * component template.
+   */
   ngOnInit(): void {
     this.providerService.getAllProviders().subscribe(providers => {
       this.providers = providers;
     });
   }
 
+  /**
+   * Emits the current form values through the `filter` event.
+   * This method is typically called when the form is submitted,
+   * allowing parent components to receive and process the filter
+   * parameters specified in the form.
+   */
   onSubmit() {
     this.filter.emit(this.orderFilterForm.value);
   }
 
+  /**
+   * Resets the order filter form to its initial state and emits the reset filter values.
+   * This method is typically called to clear the current filter selections,
+   * allowing the user to start a new filter process with default values.
+   */
   onCancel() {
     this.orderFilterForm.reset({ provider: null, name: '' });
     this.filter.emit(this.orderFilterForm.value);

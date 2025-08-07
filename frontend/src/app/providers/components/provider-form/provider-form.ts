@@ -30,12 +30,27 @@ export class ProviderForm {
 
   constructor(private providerService: ProviderService) { }
 
+  /**
+   * Called when the component is initialized or when the `selectedProvider` input is changed.
+   * If `selectedProvider` is defined, patches the form with the values of `selectedProvider`.
+   * This method is used to synchronize the form with the selected provider when the component is initialized
+   * or when the selected provider is changed.
+   *
+   * @param changes The SimpleChanges object describing the change that occurred.
+   */
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['selectedProvider'] && this.selectedProvider) {
       this.providerForm.patchValue(this.selectedProvider);
     }
   }
 
+  /**
+   * Submits the provider form by either creating a new provider or updating an existing one.
+   * If the form is invalid, the submission is aborted.
+   * Extracts form values including `_id`, `name`, `email`, `phone`, and `address`.
+   * If `_id` is present, updates the existing provider and emits the update event.
+   * Otherwise, creates a new provider and emits the create event.
+   */
   onSubmit() {
     if (this.providerForm.invalid) return;
 
@@ -52,16 +67,30 @@ export class ProviderForm {
     }
   }
 
+  /**
+   * Resets the provider form to its initial state and emits the `create` event.
+   * This method signals that a new provider should be created after the form has been submitted.
+   */
   resetAndEmitCreate() {
     this.providerForm.reset({ _id: null, name: '', email: '', phone: '', address: '' });
     this.create.emit();
   }
 
+  /**
+   * Resets the provider form to its initial state and emits the `update` event.
+   * This method signals that an existing provider should be updated after the form has been submitted.
+   */
   resetAndEmitUpdate() {
     this.providerForm.reset({ _id: null, name: '', email: '', phone: '', address: '' });
     this.update.emit();
   }
 
+/**
+ * Resets the provider form to its initial state and emits a cancel event.
+ * This method is typically invoked when the user decides to cancel the current
+ * provider operation, such as creating or editing a provider, and wishes to revert
+ * any changes made to the form fields.
+ */
   onCancel() {
     this.providerForm.reset({ _id: null, name: '', email: '', phone: '', address: '' });
     this.cancel.emit();

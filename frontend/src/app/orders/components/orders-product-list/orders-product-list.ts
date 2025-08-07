@@ -20,6 +20,13 @@ export class OrdersProductList implements OnChanges {
 
   constructor(private orderService: OrdersService) { }
 
+  /**
+   * Responds to changes in the input properties.
+   * Specifically, it updates the products when the currentFilters input property changes.
+   * The products are then used to populate the product table in the component template.
+   *
+   * @param changes - An object of current and previous property values.
+   */
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['currentFilters'] && this.currentFilters) {
       this.orderService.getFilteredProducts(this.currentFilters).subscribe({
@@ -33,6 +40,12 @@ export class OrdersProductList implements OnChanges {
     }
   }
 
+/**
+ * Emits an orderProduct event for the specified product.
+ * This function is typically called when a user wants to order a product from the list.
+ *
+ * @param product - The product to be ordered.
+ */
   onOrderProduct(product: ProductModel) {
     this.orderProduct.emit(product);
   }

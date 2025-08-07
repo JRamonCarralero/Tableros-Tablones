@@ -24,20 +24,37 @@ export class ProviderList {
 
   constructor(private providerService: ProviderService) { }
 
+  /**
+   * Called when the component is initialized.
+   * Loads the providers from the provider service.
+   */
   ngOnInit(): void {
     this.load();
   }
 
+  /**
+   * Loads the providers from the provider service and updates the component's providers signal.
+   */
   load() {
     this.providerService.getAllProviders().subscribe(
       list => this.providers.set(list)
     );
   }
 
+  /**
+   * Edits the given provider.
+   * The provider is set into the editing state and the form is shown.
+   * @param provider The provider to edit.
+   */
   onEdit(provider: ProviderModel) {
     this.editing.set(provider);
   }
 
+  /**
+   * Starts creating a new provider.
+   * The provider is set into the editing state and the form is shown.
+   * The provider has no ID and all fields are empty.
+   */
   onNewProvider() {
     this.editing.set({
       _id: undefined!,
@@ -48,11 +65,23 @@ export class ProviderList {
     });
   }
 
+  /**
+   * Called when the provider form is saved or cancelled.
+   * Resets the editing state and reloads the providers from the database.
+   */
   onSaved() {
     this.editing.set(undefined!);
     this.load();
   }
 
+  /**
+   * Deletes a provider.
+   * Prompts the user to confirm the deletion,
+   * calls the model to delete the provider from the database, and
+   * reloads the providers from the database upon success.
+   *
+   * @param id - The id of the provider to be deleted.
+   */
   onDelete(id: string) {
     if (!id) {
       console.warn('Provider id is undefined');
@@ -66,11 +95,24 @@ export class ProviderList {
     }
   }
 
+  /**
+   * Clears the table and resets the search input value.
+   *
+   * @param table - The table to clear.
+   */
   clear(table: Table) {
     table.clear();
     this.searchValue = '';
   }
 
+  /**
+   * Returns the value of an input element from an event.
+   * This function casts the event target to an HTMLInputElement
+   * and retrieves its value, returning an empty string if the value is null or undefined.
+   *
+   * @param event - The event containing the input element.
+   * @returns The value of the input element.
+   */
   getInputValue(event: Event): string {
     return (event.target as HTMLInputElement).value;
   }
