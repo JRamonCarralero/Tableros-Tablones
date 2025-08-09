@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, signal, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, signal, SimpleChanges } from '@angular/core';
 import { OrderModel } from '../../models/order-models';
 
 @Component({

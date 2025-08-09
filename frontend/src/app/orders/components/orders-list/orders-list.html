@@ -4,5 +4,8 @@
     {{ order.date }}
     {{ order.user }}
     {{ order.provider }}
+    <p *ngFor="let product of order.products">
+      {{ product.product.name }}
+    </p>
   </li>
 </ul>

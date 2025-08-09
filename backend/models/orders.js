@@ -28,7 +28,7 @@ class OrdersModel {
      * @returns {Promise<Object[]>} - The orders data.
      */
     async getAll() {
-        return await Order.find();
+        return await Order.find().populate("products");
     }
 
     /**
