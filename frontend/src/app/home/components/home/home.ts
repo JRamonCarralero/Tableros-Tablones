@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { Button } from "primeng/button";
 import { Footer } from "../../../footer/components/footer/footer";
-import { Image } from "primeng/image";
+import { SharedModule } from '../../../shared/shared-module';
 
 @Component({
   selector: 'app-home',
-  imports: [Button, Footer, Image],
+  imports: [Footer, SharedModule],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })

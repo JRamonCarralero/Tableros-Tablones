@@ -1,11 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import { Select } from 'primeng/select';
 import { ProviderModel } from '../../../providers/models/provider-model';
 import { ProviderService } from '../../../providers/services/provider-service';
+import { SharedModule } from '../../../shared/shared-module';
 
 @Component({
   selector: 'app-orders-filter',
@@ -13,9 +11,7 @@ import { ProviderService } from '../../../providers/services/provider-service';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    InputTextModule,
-    ButtonModule,
-    Select
+    SharedModule
   ],
   templateUrl: './orders-filter.html',
   styleUrl: './orders-filter.css'

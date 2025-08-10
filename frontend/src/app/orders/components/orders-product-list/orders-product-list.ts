@@ -2,12 +2,11 @@ import { Component, EventEmitter, Input, OnChanges, Output, signal, SimpleChange
 import { OrderFilterParams } from "../../models/order-models";
 import { OrdersService } from '../../services/orders-service';
 import { ProductModel } from '../../../products/models/product-model';
-import { TableModule } from 'primeng/table';
-import { ButtonModule } from 'primeng/button';
+import { SharedModule } from '../../../shared/shared-module';
 
 @Component({
   selector: 'app-orders-product-list',
-  imports: [TableModule, ButtonModule],
+  imports: [ SharedModule ],
   templateUrl: './orders-product-list.html',
   styleUrl: './orders-product-list.css'
 })

@@ -1,12 +1,10 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { ProductWithQuantity } from '../../models/order-models';
-import { TableModule } from "primeng/table";
-import { IconFieldModule } from 'primeng/iconfield';
-import { ButtonModule } from 'primeng/button';
+import { SharedModule } from '../../../shared/shared-module';
 
 @Component({
   selector: 'app-orders-kart',
-  imports: [TableModule, IconFieldModule, ButtonModule],
+  imports: [ SharedModule ],
   templateUrl: './orders-kart.html',
   styleUrl: './orders-kart.css'
 })

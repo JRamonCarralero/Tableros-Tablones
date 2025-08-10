@@ -7,12 +7,20 @@ import { OrdersProduct } from "../orders-product/orders-product";
 import { CommonModule } from '@angular/common';
 import { OrdersKart } from "../orders-kart/orders-kart";
 import { OrdersService } from '../../services/orders-service';
-import { ButtonModule } from 'primeng/button';
 import { OrdersList } from "../orders-list/orders-list";
+import { SharedModule } from '../../../shared/shared-module';
 
 @Component({
   selector: 'app-orders-view',
-  imports: [OrdersFilter, OrdersProduct, CommonModule, OrdersKart, ButtonModule, OrdersProductList, OrdersList],
+  imports: [
+    CommonModule,
+    OrdersFilter,
+    OrdersProduct,
+    OrdersKart,
+    OrdersProductList,
+    OrdersList,
+    SharedModule
+  ],
   templateUrl: './orders-view.html',
   styleUrl: './orders-view.css'
 })

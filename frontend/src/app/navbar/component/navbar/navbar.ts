@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { ButtonModule } from 'primeng/button';
 import { RouterLink } from '@angular/router';
+import { SharedModule } from '../../../shared/shared-module';
 
 @Component({
   selector: 'app-navbar',
-  imports: [ButtonModule, RouterLink],
+  imports: [ RouterLink, SharedModule ],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css'
 })

@@ -2,13 +2,17 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProviderService } from '../../services/provider-service';
 import { ProviderModel } from '../../models/provider-model';
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../../shared/shared-module';
 
 @Component({
   selector: 'app-provider-form',
-  imports: [CommonModule, InputTextModule, ButtonModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule
+  ],
   templateUrl: './provider-form.html',
   styleUrl: './provider-form.css'
 })

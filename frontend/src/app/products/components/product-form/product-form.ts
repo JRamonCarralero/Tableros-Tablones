@@ -3,13 +3,9 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProductService } from '../../services/product-service';
 import { ProductModel } from '../../models/product-model';
-import { InputTextModule } from 'primeng/inputtext';
-import { ButtonModule } from 'primeng/button';
-import { InputNumberModule } from 'primeng/inputnumber';
-import { CheckboxModule } from 'primeng/checkbox';
 import { ProviderModel } from '../../../providers/models/provider-model';
 import { ProviderService } from '../../../providers/services/provider-service';
-import { Select } from 'primeng/select';
+import { SharedModule } from '../../../shared/shared-module';
 
 @Component({
   selector: 'app-product-form',
@@ -17,11 +13,7 @@ import { Select } from 'primeng/select';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    InputTextModule,
-    ButtonModule,
-    InputNumberModule,
-    CheckboxModule,
-    Select
+    SharedModule
   ],
   templateUrl: './product-form.html',
   styleUrl: './product-form.css'

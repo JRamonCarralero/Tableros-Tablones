@@ -1,17 +1,18 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TableModule, Table } from 'primeng/table';
-import { ButtonModule } from 'primeng/button';
-import { IconFieldModule } from 'primeng/iconfield';
-import { InputIconModule } from 'primeng/inputicon';
-import { InputTextModule } from 'primeng/inputtext';
 import { ProviderForm } from '../provider-form/provider-form';
 import { ProviderService } from '../../services/provider-service';
 import { ProviderModel } from '../../models/provider-model';
+import { SharedModule } from '../../../shared/shared-module';
+import { Table as ProviderTablePNG } from 'primeng/table';
 
 @Component({
   selector: 'app-provider-list',
-  imports: [ProviderForm, CommonModule, TableModule, ButtonModule, IconFieldModule, InputIconModule, InputTextModule],
+  imports: [
+    ProviderForm,
+    CommonModule,
+    SharedModule
+  ],
   templateUrl: './provider-list.html',
   styleUrl: './provider-list.css'
 })
@@ -100,7 +101,7 @@ export class ProviderList {
    *
    * @param table - The table to clear.
    */
-  clear(table: Table) {
+  clear(table: ProviderTablePNG) {
     table.clear();
     this.searchValue = '';
   }

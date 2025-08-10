@@ -3,15 +3,16 @@ import { ProductForm } from "../product-form/product-form";
 import { CommonModule } from '@angular/common';
 import { ProductModel } from '../../models/product-model';
 import { ProductService } from '../../services/product-service';
-import { TableModule, Table } from 'primeng/table';
-import { ButtonModule } from 'primeng/button';
-import { IconFieldModule } from 'primeng/iconfield';
-import { InputIconModule } from 'primeng/inputicon';
-import { InputTextModule } from 'primeng/inputtext';
+import { Table as ProductsTablePNG } from 'primeng/table';
+import { SharedModule } from '../../../shared/shared-module';
 
 @Component({
   selector: 'app-product-list',
-  imports: [ProductForm, CommonModule, TableModule, ButtonModule, IconFieldModule, InputIconModule, InputTextModule],
+  imports: [
+    ProductForm,
+    CommonModule,
+    SharedModule
+  ],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css'
 })
@@ -110,7 +111,7 @@ export class ProductList implements OnInit {
    *
    * @param table - The table to clear.
    */
-  clear(table: Table) {
+  clear(table: ProductsTablePNG) {
       table.clear();
       this.searchValue = ''
   }

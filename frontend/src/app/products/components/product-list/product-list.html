@@ -5,7 +5,7 @@
 </div>
 
 <div class="container mx-auto p-8">
-  <p-table #dt1
+  <p-table #pt1
     [value]="products()"
     dataKey="_id"
     [paginator]="true"
@@ -19,12 +19,12 @@
 >
     <ng-template #caption>
         <div class="flex items-center">
-            <p-button label="Clear" [outlined]="true" icon="pi pi-filter-slash" (click)="clear(dt1)" />
+            <p-button label="Clear" [outlined]="true" icon="pi pi-filter-slash" (click)="clear(pt1)" />
             <p-iconfield iconPosition="left" class="ml-auto">
               <p-inputicon>
                   <i class="pi pi-search"></i>
               </p-inputicon>
-              <input pInputText type="text" (input)="dt1.filterGlobal(getInputValue($event), 'contains')" placeholder="Buscar" class="w-xl" />
+              <input pInputText type="text" (input)="pt1.filterGlobal(getInputValue($event), 'contains')" placeholder="Buscar" class="w-xl" />
             </p-iconfield>
             <div class="ml-auto">
               <p-button *ngIf="!editing()" label="Crear" [outlined]="true" icon="pi pi-plus" (click)="onNewProduct()"></p-button>

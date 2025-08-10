@@ -1,13 +1,12 @@
 import { Component, EventEmitter, Input, OnChanges, Output, signal, SimpleChanges } from '@angular/core';
 import { ProductModel } from '../../../products/models/product-model';
-import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
-import { InputNumberModule } from 'primeng/inputnumber';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../../../shared/shared-module';
 
 @Component({
   selector: 'app-orders-product',
-  imports: [CommonModule, ButtonModule, InputNumberModule, FormsModule],
+  imports: [CommonModule, FormsModule, SharedModule],
   templateUrl: './orders-product.html',
   styleUrl: './orders-product.css'
 })
