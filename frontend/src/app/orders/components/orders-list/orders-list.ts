@@ -2,10 +2,11 @@ import { Component, OnInit, signal } from '@angular/core';
 import { OrderModel } from '../../models/order-models';
 import { OrdersService } from '../../services/orders-service';
 import { CommonModule } from '@angular/common';
+import { OrdersDetail } from '../orders-detail/orders-detail';
 
 @Component({
   selector: 'app-orders-list',
-  imports: [CommonModule],
+  imports: [CommonModule, OrdersDetail],
   templateUrl: './orders-list.html',
   styleUrl: './orders-list.css'
 })

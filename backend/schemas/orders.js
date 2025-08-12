@@ -8,6 +8,7 @@ const ordersSchema = new mongoose.Schema(
         },
         provider: {
             type: Schema.Types.ObjectId,
+            ref: 'Provider',
             required: true
         },
         user: {

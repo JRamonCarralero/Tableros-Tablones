@@ -1,4 +1,5 @@
 import { ProductModel } from "../../products/models/product-model";
+import { ProviderModel } from "../../providers/models/provider-model";
 
 export interface OrderFilterParams {
   provider: string | null;
@@ -17,4 +18,8 @@ export interface OrderModel {
   provider: string;
   user: string;
   date: Date;
+}
+
+export interface OrderModelWithProvider extends Omit<OrderModel, 'provider'> {
+  provider: ProviderModel;
 }
