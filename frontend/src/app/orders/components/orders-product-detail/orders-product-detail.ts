@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, signal, SimpleChanges } from '@angular/core';
-import { ProductModel } from '../../../products/models/product-model';
+import { ProductWithQuantity } from '../../models/order-models';
 
 @Component({
   selector: 'app-orders-product-detail',
@@ -8,21 +8,13 @@ import { ProductModel } from '../../../products/models/product-model';
   styleUrl: './orders-product-detail.css'
 })
 export class OrdersProductDetail implements OnChanges {
-  @Input() product?: ProductModel;
+  @Input() product?: ProductWithQuantity;
 
-  currentProduct = signal<ProductModel>({
-    _id: '',
-    name: '',
-    description: '',
-    price: 0,
-    stock: 0,
-    featured: false,
-    type: '',
-    height: 0,
-    width: 0,
-    thickness: 0,
-    provider: ''
-  })
+  currentProduct = signal<ProductWithQuantity>({
+    product: { _id: '', name: '', description: '', price: 0, stock: 0, featured: false, type: '', height: 0, width: 0, thickness: 0, provider: '' },
+    quantity: 0,
+    price: 0
+  });
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['product'] && this.product) {

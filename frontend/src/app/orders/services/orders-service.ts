@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProductModel } from '../../products/models/product-model';
-import { OrderFilterParams, OrderModel, ProductWithQuantity } from "../models/order-models";
+import { OrderFilterParams, OrderModel, OrderModelWithProvider, ProductWithQuantity } from "../models/order-models";
 
 @Injectable({
   providedIn: 'root'
@@ -42,7 +42,7 @@ export class OrdersService {
     return this.http.post<OrderModel>(this.ordersAPI, newOrder);
   }
 
-  getOrders(): Observable<OrderModel[]> {
-    return this.http.get<OrderModel[]>(this.ordersAPI);
+  getOrders(): Observable<OrderModelWithProvider[]> {
+    return this.http.get<OrderModelWithProvider[]>(this.ordersAPI);
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { OrderModel } from '../../models/order-models';
+import { OrderModelWithProvider } from '../../models/order-models';
 import { OrdersService } from '../../services/orders-service';
 import { CommonModule } from '@angular/common';
 import { OrdersDetail } from '../orders-detail/orders-detail';
@@ -12,7 +12,7 @@ import { OrdersDetail } from '../orders-detail/orders-detail';
 })
 export class OrdersList implements OnInit {
 
-  orders = signal<OrderModel[]>([]);
+  orders = signal<OrderModelWithProvider[]>([]);
 
   constructor(private orderService: OrdersService) { }
 

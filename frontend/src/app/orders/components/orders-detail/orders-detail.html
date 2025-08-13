@@ -5,10 +5,7 @@
     <span>Usuario: {{ currentOrder().user }}</span>
     <span>Precio: {{ total() }}</span>
   </div>
-  <div *ngFor="let product of currentOrder().products" class="flex flex-row justify-end gap-4">
-    <span>Producto: {{ product.product.name }}</span>
-    <span>Cantidad: {{ product.quantity }}</span>
-    <span>Precio: {{ product.price }} €</span>
-    <span>Total: {{ product.price * product.quantity }} €</span>
+  <div *ngFor="let product of currentOrder().products" >
+    <app-orders-product-detail [product]="product"></app-orders-product-detail>
   </div>
 </div>

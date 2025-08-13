@@ -1,1 +1,6 @@
-<p>orders-product-detail works!</p>
+<div class="flex flex-row justify-end gap-4">
+  <span>Producto: {{ currentProduct().product.name }}</span>
+  <span>Cantidad: {{ currentProduct().quantity }}</span>
+  <span>Precio: {{ currentProduct().price }} €</span>
+  <span>Total: {{ currentProduct().price * currentProduct().quantity }} €</span>
+</div>

@@ -1,10 +1,11 @@
 import { Component, Input, OnChanges, signal, SimpleChanges } from '@angular/core';
 import { OrderModelWithProvider } from '../../models/order-models';
 import { DatePipe, CommonModule } from '@angular/common';
+import { OrdersProductDetail } from '../orders-product-detail/orders-product-detail';
 
 @Component({
   selector: 'app-orders-detail',
-  imports: [ CommonModule, DatePipe ],
+  imports: [ CommonModule, DatePipe, OrdersProductDetail ],
   templateUrl: './orders-detail.html',
   styleUrl: './orders-detail.css'
 })
