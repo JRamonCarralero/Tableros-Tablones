@@ -1,4 +1,5 @@
 import Order from "../schemas/orders.js";
+import Product from "../schemas/products.js";
 import mongoose from "mongoose";
 
 class OrdersModel {
@@ -28,7 +29,7 @@ class OrdersModel {
      * @returns {Promise<Object[]>} - The orders data.
      */
     async getAll() {
-        return await Order.find().populate("products provider");
+        return await Order.find().populate('provider').populate('products.product');
     }
 
     /**
@@ -62,6 +63,26 @@ class OrdersModel {
         return await Order.findOneAndUpdate(
             { _id: new mongoose.Types.ObjectId(id) },
             order,
+            { new: true }
+        );
+    }
+
+
+    /**
+     * Updates the quantity of a product in the database.
+     * 
+     * This function receives the id of the product and the quantity to update as parameters,
+     * calls the model to update the product in the database, and sends a response with the
+     * updated product data.
+     * 
+     * @param {string} id - The id of the product to update.
+     * @param {number} quantity - The quantity to update the product with.
+     * @returns {Promise<Object>} - The updated product data.
+     */
+    async updateProduct(id, quantity) {
+        return await Product.findOneAndUpdate(
+            { _id: new mongoose.Types.ObjectId(id) },
+            { $inc: { stock: quantity } },
             { new: true }
         );
     }

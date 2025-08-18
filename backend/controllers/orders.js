@@ -3,24 +3,43 @@ import ordersModel from '../models/orders.js';
 class ordersController {
     constructor() {}
 
+    
     /**
-     * Creates a new order.
+     * Creates a new order and updates the stock of the products.
      * 
      * This function receives a request containing order details in the body,
-     * calls the model to create the order in the database, and sends a response
+     * calls the model to create the order in the database, 
+     * updates the stock of the products and sends a response
      * with the created order data and a status code of 201. If an error occurs,
-     * it logs the error and sends a 500 status code with the error message.
+     * it sends a 500 status code with the error message.
      * 
      * @param {Object} req - The request object containing the order details in the body.
      * @param {Object} res - The response object used to send the response.
      */
     async create(req, res) {
         try {
-            console.log(req.body);
-            const data = await ordersModel.create(req.body);
+            const { products, provider, user, date } = req.body;
+            const productsToUpdate = products.map(p => {
+                return {id: p.product._id, quantity: p.quantity};
+            });
+
+            const newOrder = {
+                products: products.map(p => {
+                    return {product: p.product._id, quantity: p.quantity, price: p.price};
+                }),
+                provider,
+                user,
+                date
+            };
+
+            await Promise.all(productsToUpdate.map(async p => {
+                await ordersModel.updateProduct(p.id, p.quantity);
+            }));
+
+            const data = await ordersModel.create(newOrder);
             res.status(201).json(data);
         } catch (error) {
-            console.log('error');
+            console.log('error', error);
             res.status(500).send(error);
         }
     }
@@ -81,9 +100,12 @@ class ordersController {
      */
     async getAll(req, res) {
         try {
+            console.log('getAll');
             const data = await ordersModel.getAll();
+            console.log(data);
             res.status(200).json(data);
         } catch (error) {
+            console.log(error);
             res.status(500).send(error);
         }
     }

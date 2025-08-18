@@ -18,6 +18,7 @@ export class OrdersProductDetail implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['product'] && this.product) {
+      console.log('Inside OrdersProductDetail',this.product);
       this.currentProduct.set(this.product);
     }
   }
