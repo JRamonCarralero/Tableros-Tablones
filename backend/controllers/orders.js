@@ -68,12 +68,12 @@ class ordersController {
     }
 
     /**
-     * Deletes an order.
+     * Deletes an order and updates the stock of the products.
      * 
      * This function receives a request containing an id parameter in the URL,
-     * calls the model to delete the order from the database, and sends a response
-     * with the deleted order data and a status code of 200. If an error occurs,
-     * it sends a 500 status code with the error message.
+     * calls the model to delete the order from the database, updates the stock 
+     * of the products and sends a response with the deleted order data and a status
+     * code of 200. If an error occurs, it sends a 500 status code with the error message.
      * 
      * @param {Object} req - The request object containing the id in the params.
      * @param {Object} res - The response object used to send the response.
@@ -83,6 +83,10 @@ class ordersController {
             const { id } = req.params;
 
             const orderToDelete = await ordersModel.getOne(id);
+            if (!orderToDelete) {
+                return res.status(404).json({ message: 'Orden no encontrada' });
+            }
+
             await Promise.all(orderToDelete.products.map(async p => {
                 await ordersModel.updateProduct(p.product, p.quantity, true);
             }));
