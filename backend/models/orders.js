@@ -32,6 +32,22 @@ class OrdersModel {
         return await Order.find().populate('provider').populate('products.product');
     }
 
+
+    /**
+     * Gets an order by its id.
+     * 
+     * This function receives an id as a parameter, calls the model to get the
+     * order from the database, and sends a response with the order data and a
+     * status code of 200. If an error occurs, it sends a 500 status code with
+     * the error message.
+     * 
+     * @param {string} id - The id of the order to get.
+     * @returns {Promise<Object>} - The order data.
+     */
+    async getOne(id) {
+        return await Order.findOne({ _id: new mongoose.Types.ObjectId(id) });
+    }
+
     /**
      * Deletes an order.
      * 
@@ -67,6 +83,7 @@ class OrdersModel {
         );
     }
 
+// --- PRODUCT --- //
 
     /**
      * Updates the quantity of a product in the database.
@@ -79,13 +96,23 @@ class OrdersModel {
      * @param {number} quantity - The quantity to update the product with.
      * @returns {Promise<Object>} - The updated product data.
      */
-    async updateProduct(id, quantity) {
-        return await Product.findOneAndUpdate(
-            { _id: new mongoose.Types.ObjectId(id) },
-            { $inc: { stock: quantity } },
-            { new: true }
-        );
+    async updateProduct(id, quantity, del = false) {
+        if (del) {
+            return await Product.findOneAndUpdate(
+                { _id: new mongoose.Types.ObjectId(id) },
+                { $inc: { stock: -quantity } },
+                { new: true }
+            );
+        } else {
+            return await Product.findOneAndUpdate(
+                { _id: new mongoose.Types.ObjectId(id) },
+                { $inc: { stock: quantity } },
+                { new: true }
+            );
+        }
     }
+
+
 }
 
 export default new OrdersModel();

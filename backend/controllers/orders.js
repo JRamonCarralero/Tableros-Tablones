@@ -81,6 +81,12 @@ class ordersController {
     async delete(req, res) {
         try {
             const { id } = req.params;
+
+            const orderToDelete = await ordersModel.getOne(id);
+            await Promise.all(orderToDelete.products.map(async p => {
+                await ordersModel.updateProduct(p.product, p.quantity, true);
+            }));
+
             const data = await ordersModel.delete(id);
             res.status(200).json(data);
         } catch (error) {
@@ -100,9 +106,7 @@ class ordersController {
      */
     async getAll(req, res) {
         try {
-            console.log('getAll');
             const data = await ordersModel.getAll();
-            console.log(data);
             res.status(200).json(data);
         } catch (error) {
             console.log(error);
