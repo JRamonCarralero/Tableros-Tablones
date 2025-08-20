@@ -1,25 +1,24 @@
 import { Component, Input, OnChanges, signal, SimpleChanges } from '@angular/core';
 import { ProductWithQuantity } from '../../models/order-models';
+import { SharedModule } from '../../../shared/shared-module';
 
 @Component({
   selector: 'app-orders-product-detail',
-  imports: [],
+  imports: [SharedModule],
   templateUrl: './orders-product-detail.html',
   styleUrl: './orders-product-detail.css'
 })
 export class OrdersProductDetail implements OnChanges {
-  @Input() product?: ProductWithQuantity;
+  @Input() products?: ProductWithQuantity[];
 
-  currentProduct = signal<ProductWithQuantity>({
-    product: { _id: '', name: '', description: '', price: 0, stock: 0, featured: false, type: '', height: 0, width: 0, thickness: 0, provider: '' },
-    quantity: 0,
-    price: 0
-  });
+  currentProducts = signal<ProductWithQuantity[]>([]);
+
+  totalPrice: number = 0;
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['product'] && this.product) {
-      console.log('Inside OrdersProductDetail',this.product);
-      this.currentProduct.set(this.product);
+    if (changes['products'] && this.products) {
+      this.currentProducts.set(this.products);
+      this.totalPrice = this.products.reduce((total, product) => total + product.price * product.quantity, 0);
     }
   }
 }

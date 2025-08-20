@@ -5,7 +5,16 @@
     <span>Usuario: {{ currentOrder().user }}</span>
     <span>Precio: {{ total() }}</span>
   </div>
-  <div *ngFor="let product of currentOrder().products" >
-    <app-orders-product-detail [product]="product"></app-orders-product-detail>
+
+  <div class="flex flex-row justify-end py-4" *ngIf="showTable">
+    <app-orders-product-detail [products]="currentOrder().products"></app-orders-product-detail>
+  </div>
+
+  <div class="flex flex-row justify-end p-4">
+    <button pButton type="button"
+      [label]="showTable ? 'Ocultar tabla' : 'Mostrar tabla'"
+      [ngClass]="{ 'p-button-danger': showTable, 'p-button-success': !showTable }"
+      (click)="showProductTable()"
+    ></button>
   </div>
 </div>
